@@ -1,43 +1,50 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { useLanguage } from '@/components/language-provider';
-import { Button } from '@/components/ui/button';
-import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from '@/components/ui/navigation-menu';
-import { Waves, Menu, X } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import {
+  LanguageContextType,
+  useLanguage,
+} from "@/components/language-provider";
+import { Button } from "@/components/ui/button";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuList,
+} from "@/components/ui/navigation-menu";
+import { Waves, Menu, X } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { language, setLanguage, translations } = useLanguage();
+  const { language, setLanguage, t } = useLanguage() as LanguageContextType;
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'fr' : 'en');
+    setLanguage(language === "en" ? "fr" : "en");
   };
 
   const navItems = [
-    { href: '/#products', label: translations.products || 'Products' },
-    { href: '/#about', label: translations.about || 'About' },
-    { href: '/#services', label: translations.services || 'Services' },
-    { href: '/#contact', label: translations.contact || 'Contact' },
+    { href: "/#products", label:  "Products" },
+    { href: "/#about", label:  "About" },
+    { href: "/#services", label:  "Services" },
+    { href: "/#contact", label:  "Contact" },
   ];
 
   return (
     <header
       className={cn(
-        'fixed top-0 w-full z-50 transition-all duration-300',
-        isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm' : 'bg-transparent'
+        "fixed top-0 w-full z-50 transition-all duration-300",
+        isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-transparent"
       )}
     >
       <div className="container mx-auto px-4">
@@ -70,7 +77,7 @@ export default function Header() {
               onClick={toggleLanguage}
               className="hidden md:inline-flex"
             >
-              {language === 'en' ? 'FR' : 'EN'}
+              {language === "en" ? "FR" : "EN"}
             </Button>
 
             {/* Mobile Menu Button */}
@@ -109,7 +116,7 @@ export default function Header() {
                 onClick={toggleLanguage}
                 className="w-full justify-start px-3"
               >
-                {language === 'en' ? 'Français' : 'English'}
+                {language === "en" ? "Français" : "English"}
               </Button>
             </nav>
           </div>

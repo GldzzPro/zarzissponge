@@ -1,12 +1,12 @@
 "use client";
 
 import { useRef, useEffect } from 'react';
-import { useLanguage } from '@/components/language-provider';
+import { LanguageContextType, useLanguage } from '@/components/language-provider';
 import { Anchor } from 'lucide-react';
 import gsap from 'gsap';
 
 export default function About() {
-  const { translations } = useLanguage();
+  const { t } = useLanguage() as LanguageContextType;
   const aboutRef = useRef(null);
 
   useEffect(() => {

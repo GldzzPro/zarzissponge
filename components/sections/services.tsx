@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from 'react';
-import { useLanguage } from '@/components/language-provider';
+import { LanguageContextType, useLanguage } from '@/components/language-provider';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ShieldCheck, Package, RefreshCw, Ship } from 'lucide-react';
 import gsap from 'gsap';
@@ -30,7 +30,7 @@ const services = [
 ];
 
 export default function Services() {
-  const { translations } = useLanguage();
+  const { t } = useLanguage() as LanguageContextType;
   const servicesRef = useRef(null);
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export default function Services() {
     >
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold text-center mb-16">
-          {translations.services}
+          {t("services.title")}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
